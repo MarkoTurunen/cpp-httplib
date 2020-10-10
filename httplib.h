@@ -1,4 +1,3 @@
-//
 //  httplib.h
 //
 //  Copyright (c) 2020 Yuji Hirose. All rights reserved.
@@ -4346,6 +4345,8 @@ inline bool Server::listen_internal() {
           // The per-process limit of open file descriptors has been reached.
           // Try to accept new connections after a short sleep.
           std::this_thread::sleep_for(std::chrono::milliseconds(1));
+          continue;
+        } else if (errno == EINTR) {
           continue;
         }
         if (svr_sock_ != INVALID_SOCKET) {
