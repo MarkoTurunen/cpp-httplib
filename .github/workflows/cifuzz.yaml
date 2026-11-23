@@ -30,3 +30,4 @@ jobs:
       with:
         name: artifacts
         path: ./out/artifacts
+        retention-days: 3
